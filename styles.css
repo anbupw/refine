@@ -1,0 +1,43 @@
+:root { --b:#e5e7eb; --muted:#6b7280; --ok:#065f46; --bad:#b91c1c; --sel:#1d4ed8; }
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:1.2rem;background:#f8fafc;color:#111827}
+h1{margin:.2rem 0 .4rem}
+.grid{display:grid;gap:1rem;grid-template-columns:340px 1fr}
+.card{background:#fff;border:1px solid var(--b);border-radius:.8rem;padding:1rem}
+.muted{color:var(--muted)}
+.small{font-size:.92rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+input,button{padding:.55rem .65rem;font-size:1rem}
+input{width:100%}
+table{border-collapse:collapse;width:100%}
+th,td{border-bottom:1px solid #f1f5f9;padding:.4rem .25rem;text-align:left}
+.total{font-weight:700}
+.inv{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.slot{border:2px dashed #cbd5e1;border-radius:.75rem;padding:1rem;min-height:120px;display:flex;align-items:center;justify-content:center;background:#f9fafb;text-align:center}
+.slot.over{background:#eef2ff;border-color:#6366f1}
+.chip{display:inline-flex;align-items:center;gap:.35rem;border:1px solid #e5e7eb;border-radius:999px;padding:.15rem .5rem}
+.lvl{font-weight:800}
+.item{border:1px solid #e5e7eb;border-radius:.6rem;padding:.6rem;background:#ffffff;cursor:grab}
+.item.drag{opacity:.6}
+.log{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92rem;background:#fbfbfb;border:1px solid #e5e7eb;border-radius:.5rem;max-height:220px;overflow:auto;padding:.5rem}
+.ok{color:var(--ok)} .bad{color:var(--bad)}
+.toolbar{display:flex;gap:.5rem;flex-wrap:wrap}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+
+/* Bolinhas clicáveis das pedras */
+.stones { display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; }
+.stone { display:flex; flex-direction:column; align-items:center; gap:.3rem; cursor:pointer; }
+.stone .dot { width:46px; height:46px; border-radius:999px; border:2px solid #cbd5e1; background:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.stone.selected .dot { border-color: var(--sel); box-shadow: 0 0 0 3px rgba(29,78,216,.15); }
+.stone .label { font-size:.9rem; color:#111; text-align:center; }
+.stone[data-stone="imortal"] .dot { background:#dfe6e9 }  /* leve laranja */
+.stone[data-stone="ceu"]     .dot { background:#0984e3 }  /* leve azul */
+.stone[data-stone="maligna"] .dot { background:#6c5ce7 }  /* leve rosa */
+.stone[data-stone="terra"]   .dot { background:#00b894 }  /* leve verde */
+
+.actions{display:flex; gap:.5rem; flex-wrap:wrap}
+button{cursor:pointer}
+
+@media (max-width: 860px){
+  .grid{grid-template-columns:1fr}
+}

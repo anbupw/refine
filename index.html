@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Simulator Refine The Classic Pangu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Simulator Refine The Classic Pangu</h1>
+    <p class="muted">
+      Simulator refine untuk PW Classic 1.4.8
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="section-title">
+          <h3>Harga Batu (Coin)</h3>
+          
+        </div>
+
+        <div class="row">
+          <div><label for="p_imortal">Mirage Celestone</label><input id="p_imortal" type="number" step="0.0001" value="0.30"></div>
+          <div><label for="p_ceu">Heaven Stone</label><input id="p_ceu" type="number" step="0.0001" value="3"></div>
+        </div>
+        <div class="row" style="margin-top:.4rem">
+          <div><label for="p_maligna">Underworld Stone</label><input id="p_maligna" type="number" step="0.0001" value="3"></div>
+          <div><label for="p_terra">Universal Stone</label><input id="p_terra" type="number" step="0.0001" value="1.42"></div>
+        </div>
+		</p>
+		<div class="toolbar">
+            <button id="save-prices">Simpan Harga</button>
+            <button id="reset-all" title="Reset Semua level, biaya dan jumlah">Atur Ulang Semua</button>
+        </div>
+        <h3 style="margin-top:1rem">Total Biaya</h3>
+        <table>
+          <tr><th>Mirage Celestone</th><td id="c_imortal">0</td></tr>
+          <tr><th>Heaven Stone</th><td id="c_ceu">0</td></tr>
+          <tr><th>Underworld Stone</th><td id="c_maligna">0</td></tr>
+          <tr><th>Universal Stone</th><td id="c_terra">0</td></tr>
+          <tr><th class="total">TOTAL</th><td class="total" id="c_total">0</td></tr>
+        </table>
+
+        <h3 style="margin-top:1rem">Jumlah Batu yang Digunakan</h3>
+        <table>
+          <tr><th>Mirage Celestone</th><td id="u_imortal">0</td></tr>
+          <tr><th>Heaven Stone</th><td id="u_ceu">0</td></tr>
+          <tr><th>Underworld Stone</th><td id="u_maligna">0</td></tr>
+          <tr><th>Universal Stone</th><td id="u_terra">0</td></tr>
+          <tr><th class="total">TOTAL</th><td class="total" id="u_total">0</td></tr>
+        </table>
+
+        <h3 style="margin-top:1rem">Probabilitas</h3>
+        <p class="muted small">Probabilitas sukses untuk naik dari level saat ini ke level berikutnya (+1..+8). <br>Aturan kegagalan:
+          <span class="chip">Mirage Celestone: kembali ke 0</span>
+          <span class="chip">Heaven Stone: kembali ke 0</span>
+          <span class="chip">Underworld Stone: -1</span>
+          <span class="chip">Universal Stone: tetap</span>
+        </p>
+        <div id="probs"></div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:1rem">
+          <h3>Inventory</h3>
+          <div id="inventory" class="inv"></div>
+        </div>
+
+        <div class="card">
+          <h3>Kotak Refine</h3>
+          <div id="table-slot" class="slot" data-slot>Seret item ke sini</div>
+
+          <div style="margin-top:.8rem">
+            <label>Pilih batu</label>
+            <div id="stones" class="stones">
+              <div class="stone selected" data-stone="imortal" tabindex="0">
+                <div class="dot">IMO</div><div class="label">Mirage Celestone</div>
+              </div>
+              <div class="stone" data-stone="ceu" tabindex="0">
+                <div class="dot">HV</div><div class="label">Heaven Stone</div>
+              </div>
+              <div class="stone" data-stone="maligna" tabindex="0">
+                <div class="dot">Earth</div><div class="label">Underworld Stone</div>
+              </div>
+              <div class="stone" data-stone="terra" tabindex="0">
+                <div class="dot">Univ</div><div class="label">Universal Stone</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:.8rem">
+            <button id="refine">Refine</button>
+            <button id="refine10">Refine x10</button>
+            <button id="remove">Hapus Item</button>
+          </div>
+
+          <div class="log" id="log" style="margin-top:.6rem"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
