@@ -99,7 +99,7 @@ function renderInventory(){
 }
 renderInventory();
 
-// ======= Meja (drop target) =======
+// ======= Kotak (drop target) =======
 $slot.addEventListener('dragover', e => { e.preventDefault(); $slot.classList.add('over'); });
 $slot.addEventListener('dragleave', () => $slot.classList.remove('over'));
 $slot.addEventListener('drop', e => {
@@ -150,7 +150,7 @@ function attemptOnce(currentLevel, stone){
 
 // ======= Refine (1x dan 10x) =======
 async function refineOnce(){
-  if (!state.onTable){ log('Pilih item di meja.', 'bad'); return; }
+  if (!state.onTable){ log('Seret item ke Kotak Refine!', 'bad'); return; }
   const it = state.items.find(x=>x.id===state.onTable);
   if (it.lvl >= MAX_LEVEL){ log(`Item sudah mencapai level maksimum (+${MAX_LEVEL}).`, 'ok'); return; }
 
