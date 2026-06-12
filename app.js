@@ -1,10 +1,10 @@
 // ======= Parameter Game =======
 const MAX_LEVEL = 8;
 const PROBS = {
-  imortal: {1:0.50,2:0.30,3:0.30,4:0.30,5:0.30,6:0.30,7:0.30,8:0.30},
-  ceu:     {1:0.65,2:0.45,3:0.45,4:0.45,5:0.45,6:0.45,7:0.45,8:0.45},
-  maligna: {1:0.533,2:0.335,3:0.335,4:0.335,5:0.335,6:0.335,7:0.335,8:0.335},
-  terra:   {1:1.00,2:0.25,3:0.10,4:0.04,5:0.02,6:0.0077,7:0.0047,8:0.0025},
+  imortal: {1:0.50, 2:0.30, 3:0.30, 4:0.30, 5:0.30, 6:0.30, 7:0.30, 8:0.30},
+  ceu:     {1:0.65, 2:0.45, 3:0.45, 4:0.45, 5:0.45, 6:0.45, 7:0.45, 8:0.45},
+  maligna: {1:0.533, 2:0.335, 3:0.335, 4:0.335, 5:0.335, 6:0.335, 7:0.335, 8:0.335},
+  terra:   {1:1.00, 2:0.25, 3:0.10, 4:0.04, 5:0.02, 6:0.0077, 7:0.0047, 8:0.0025},
 };
 const FAIL_RULE = { imortal:'reset', ceu:'reset', maligna:'drop', terra:'stay' };
 
@@ -106,6 +106,7 @@ $slot.addEventListener('drop', e => {
   const id = e.dataTransfer.getData('text/plain');
   placeOnTable(id);
 });
+
 function placeOnTable(id){
   const it = state.items.find(x=>x.id===id);
   if (!it) return;
@@ -129,7 +130,7 @@ $stones.addEventListener('click', (e) => {
   state.selectedStone = stoneEl.dataset.stone;
 });
 
-// ======= Logika SATU percobaan (client-side) =======
+// ======= Logika SATU percobaan =======
 function attemptOnce(currentLevel, stone){
   if (currentLevel >= MAX_LEVEL){
     return {success:false, new_level: currentLevel, applied_rule:'max'};
@@ -138,6 +139,7 @@ function attemptOnce(currentLevel, stone){
   const p = PROBS[stone][need];
   const roll = Math.random();
   const success = roll < p;
+  
   if (success){
     return {success:true, new_level: currentLevel + 1, applied_rule:'success'};
   } else {
@@ -145,7 +147,7 @@ function attemptOnce(currentLevel, stone){
     let newLevel = currentLevel;
     if (rule === 'drop') newLevel = Math.max(0, currentLevel - 1);
     else if (rule === 'reset') newLevel = 0;
-    // 'stay' tetap
+    // jika 'stay', level tetap
     return {success:false, new_level:newLevel, applied_rule:rule};
   }
 }
@@ -169,7 +171,7 @@ async function refineOnce(){
   placeOnTable(it.id);
 
   if (res.success) {
-    log(`[SUKSES] Refine berhasil! Level naik.`, 'ok');
+    log(`[SUKSES] Refine berhasil! Level naik menjadi +${it.lvl}.`, 'ok');
   } else {
     let msg = `[GAGAL] Refine gagal.`;
     if (res.applied_rule === 'reset')      msg += ' Level hancur menjadi 0.';
