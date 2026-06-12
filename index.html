@@ -4,119 +4,117 @@
     <meta charset="utf-8"/>
     <title>Simulator Refine The Classic Pangu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="header-container">
       <h1>Simulator Refine</h1>
-      <p class="muted">PW Classic 1.4.8 Refinement Simulator</p>
+      <p class="subtitle">PW Classic 1.4.8 — The Pangu Simulator</p>
     </div>
 
     <div class="grid">
-      <div class="card">
-        <div class="section-title">
+      <div class="panel">
+        <div class="panel-header">
           <h3>Pengaturan Harga (Coin)</h3>
         </div>
-        <div class="row">
-          <div class="input-group">
-            <label for="p_imortal">Mirage Celestone</label>
-            <input id="p_imortal" type="number" step="0.0001" value="0.30">
+        <div class="panel-body">
+          <div class="row">
+            <div class="input-group">
+              <label for="p_imortal">Mirage Celestone</label>
+              <input id="p_imortal" type="number" step="0.0001" value="0.30">
+            </div>
+            <div class="input-group">
+              <label for="p_ceu">Heaven Stone</label>
+              <input id="p_ceu" type="number" step="0.0001" value="3">
+            </div>
           </div>
-          <div class="input-group">
-            <label for="p_ceu">Heaven Stone</label>
-            <input id="p_ceu" type="number" step="0.0001" value="3">
+          <div class="row" style="margin-top:.8rem">
+            <div class="input-group">
+              <label for="p_maligna">Underworld Stone</label>
+              <input id="p_maligna" type="number" step="0.0001" value="3">
+            </div>
+            <div class="input-group">
+              <label for="p_terra">Universal Stone</label>
+              <input id="p_terra" type="number" step="0.0001" value="1.42">
+            </div>
           </div>
-        </div>
-        <div class="row" style="margin-top:.8rem">
-          <div class="input-group">
-            <label for="p_maligna">Underworld Stone</label>
-            <input id="p_maligna" type="number" step="0.0001" value="3">
+          <div class="toolbar" style="margin-top: 1.2rem;">
+              <button id="save-prices" class="btn-gold">Simpan Harga</button>
+              <button id="reset-all" class="btn-dark" title="Reset Semua level, biaya dan jumlah">Atur Ulang</button>
           </div>
-          <div class="input-group">
-            <label for="p_terra">Universal Stone</label>
-            <input id="p_terra" type="number" step="0.0001" value="1.42">
-          </div>
-        </div>
-        <div class="toolbar" style="margin-top: 1.2rem;">
-            <button id="save-prices" class="btn-primary">Simpan Harga</button>
-            <button id="reset-all" class="btn-secondary" title="Reset Semua level, biaya dan jumlah">Atur Ulang</button>
-        </div>
 
-        <div class="stats-grid" style="margin-top: 2rem;">
-          <div>
-            <h3>Total Biaya</h3>
-            <table>
-              <tr><th>Mirage Celestone</th><td id="c_imortal">0</td></tr>
-              <tr><th>Heaven Stone</th><td id="c_ceu">0</td></tr>
-              <tr><th>Underworld Stone</th><td id="c_maligna">0</td></tr>
-              <tr><th>Universal Stone</th><td id="c_terra">0</td></tr>
-              <tr class="row-total"><th>TOTAL</th><td id="c_total">0</td></tr>
-            </table>
+          <div class="stats-grid" style="margin-top: 2rem;">
+            <div>
+              <h3 class="gold-text">Total Biaya</h3>
+              <table class="game-table">
+                <tr><th>Mirage</th><td id="c_imortal">0</td></tr>
+                <tr><th>Heaven</th><td id="c_ceu">0</td></tr>
+                <tr><th>Underworld</th><td id="c_maligna">0</td></tr>
+                <tr><th>Universal</th><td id="c_terra">0</td></tr>
+                <tr class="row-total"><th>TOTAL</th><td id="c_total">0</td></tr>
+              </table>
+            </div>
+            <div>
+              <h3 class="gold-text">Batu Terpakai</h3>
+              <table class="game-table">
+                <tr><th>Mirage</th><td id="u_imortal">0</td></tr>
+                <tr><th>Heaven</th><td id="u_ceu">0</td></tr>
+                <tr><th>Underworld</th><td id="u_maligna">0</td></tr>
+                <tr><th>Universal</th><td id="u_terra">0</td></tr>
+                <tr class="row-total"><th>TOTAL</th><td id="u_total">0</td></tr>
+              </table>
+            </div>
           </div>
-          <div>
-            <h3>Batu Terpakai</h3>
-            <table>
-              <tr><th>Mirage Celestone</th><td id="u_imortal">0</td></tr>
-              <tr><th>Heaven Stone</th><td id="u_ceu">0</td></tr>
-              <tr><th>Underworld Stone</th><td id="u_maligna">0</td></tr>
-              <tr><th>Universal Stone</th><td id="u_terra">0</td></tr>
-              <tr class="row-total"><th>TOTAL</th><td id="u_total">0</td></tr>
-            </table>
-          </div>
-        </div>
 
-        <h3 style="margin-top:2rem">Tabel Probabilitas</h3>
-        <p class="muted small">Probabilitas sukses untuk naik ke level berikutnya (+1 s/d +8). <br>Aturan kegagalan:</p>
-        <div class="chip-container" style="margin-bottom: 1rem;">
-          <span class="chip chip-imo">IMO: 0</span>
-          <span class="chip chip-hv">HV: 0</span>
-          <span class="chip chip-uw">UW: -1</span>
-          <span class="chip chip-univ">UNIV: Tetap</span>
-        </div>
-        <div class="table-wrapper">
-          <div id="probs"></div>
+          <h3 class="gold-text" style="margin-top:2rem">Tabel Probabilitas</h3>
+          <div class="table-wrapper">
+            <div id="probs"></div>
+          </div>
         </div>
       </div>
 
       <div>
-        <div class="card" style="margin-bottom:1.5rem">
-          <h3>Inventory</h3>
-          <p class="muted small" style="margin-bottom: 1rem;">Tahan dan seret item ke dalam Kotak Refine.</p>
-          <div id="inventory" class="inv"></div>
+        <div class="panel" style="margin-bottom:1.5rem">
+          <div class="panel-header"><h3>Tas (Inventory)</h3></div>
+          <div class="panel-body">
+            <div id="inventory" class="inv"></div>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>Kotak Refine</h3>
-          <div id="table-slot" class="slot" data-slot>
-            <span class="slot-text">Seret item ke sini</span>
-          </div>
+        <div class="panel">
+          <div class="panel-header"><h3>Altar Refine</h3></div>
+          <div class="panel-body">
+            <div id="table-slot" class="slot" data-slot>
+              <span class="slot-text">Seret Equipment Ke Sini</span>
+            </div>
 
-          <div style="margin-top:1.5rem">
-            <label style="font-weight: 600; font-size: 0.95rem; color: #374151;">Pilih Batu Refine</label>
-            <div id="stones" class="stones" style="margin-top: 0.5rem;">
-              <div class="stone selected" data-stone="imortal" tabindex="0">
-                <div class="dot">IMO</div><div class="label">Mirage</div>
-              </div>
-              <div class="stone" data-stone="ceu" tabindex="0">
-                <div class="dot">HV</div><div class="label">Heaven</div>
-              </div>
-              <div class="stone" data-stone="maligna" tabindex="0">
-                <div class="dot">UW</div><div class="label">Underworld</div>
-              </div>
-              <div class="stone" data-stone="terra" tabindex="0">
-                <div class="dot">UNIV</div><div class="label">Universal</div>
+            <div style="margin-top:2rem">
+              <label class="gold-text">Pilih Batu Refine</label>
+              <div id="stones" class="stones" style="margin-top: 0.8rem;">
+                <div class="stone selected" data-stone="imortal" tabindex="0">
+                  <div class="dot imo-orb">IMO</div><div class="label">Mirage</div>
+                </div>
+                <div class="stone" data-stone="ceu" tabindex="0">
+                  <div class="dot hv-orb">HV</div><div class="label">Heaven</div>
+                </div>
+                <div class="stone" data-stone="maligna" tabindex="0">
+                  <div class="dot uw-orb">UW</div><div class="label">Underworld</div>
+                </div>
+                <div class="stone" data-stone="terra" tabindex="0">
+                  <div class="dot univ-orb">UNIV</div><div class="label">Universal</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="actions" style="margin-top:1.5rem">
-            <button id="refine" class="btn-action">Refine 1x</button>
-            <button id="refine10" class="btn-action">Refine 10x</button>
-            <button id="remove" class="btn-secondary">Hapus Item</button>
-          </div>
+            <div class="actions" style="margin-top:2rem">
+              <button id="refine" class="btn-gold">Refine 1x</button>
+              <button id="refine10" class="btn-gold">Refine 10x</button>
+              <button id="remove" class="btn-dark">Lepas Item</button>
+            </div>
 
-          <div class="log" id="log" style="margin-top:1.5rem"></div>
+            <div class="log" id="log" style="margin-top:1.5rem"></div>
+          </div>
         </div>
       </div>
     </div>
