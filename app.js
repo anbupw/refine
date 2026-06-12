@@ -75,7 +75,7 @@ document.getElementById('reset-all').onclick = () => {
   renderInventory();
   updateCostsUI();
   updateUsageUI();
-  $slot.textContent = 'Seret item ke sini';
+  $slot.innerHTML = '<span class="slot-text">Seret item ke sini</span>';
   $log.textContent = '';
 };
 
@@ -111,11 +111,11 @@ function placeOnTable(id){
   const it = state.items.find(x=>x.id===id);
   if (!it) return;
   state.onTable = id;
-  $slot.innerHTML = `<div><strong>${it.name}</strong> <span class="chip">Level saat ini: <b>+${it.lvl}</b></span></div>`;
+  $slot.innerHTML = `<div style="text-align:center"><strong style="font-size:1.1rem; display:block; margin-bottom:0.5rem">${it.name}</strong> <span class="chip lvl">Level Saat Ini: +${it.lvl}</span></div>`;
 }
 document.getElementById('remove').onclick = () => {
   state.onTable = null;
-  $slot.textContent = 'Seret item ke sini';
+  $slot.innerHTML = '<span class="slot-text">Seret item ke sini</span>';
 };
 
 // ======= Pemilihan batu (lingkaran) =======
@@ -167,12 +167,12 @@ async function refineOnce(){
   placeOnTable(it.id);
 
   if (res.success) {
-    log('Refined successfully!', 'ok');
+    log('Refine Berhasil!', 'ok');
   } else {
-    let msg = 'Refining failed.';
-    if (res.applied_rule === 'reset')      msg += ' Item level reset.';
-    else if (res.applied_rule === 'stay')  msg += ' Item level unchanged.';
-    else if (res.applied_rule === 'drop')  msg += ' Item level reduced by 1.';
+    let msg = 'Refine Gagal.';
+    if (res.applied_rule === 'reset')      msg += ' Level item kembali ke 0.';
+    else if (res.applied_rule === 'stay')  msg += ' Level item tetap.';
+    else if (res.applied_rule === 'drop')  msg += ' Level item turun 1.';
     log(msg, 'bad');
   }
 }
@@ -191,7 +191,7 @@ function log(msg, cls){
   const host = document.getElementById('probs');
   const tbl = document.createElement('table');
   const head = document.createElement('tr');
-  const name = {imortal:"IMO", ceu:"Heaven", maligna:"Underworld", terra:"Universal"};
+  const name = {imortal:"Mirage", ceu:"Heaven", maligna:"Underworld", terra:"Universal"};
   head.innerHTML = '<th>+</th>' + Object.keys(PROBS).map(k=>`<th>${name[k]}</th>`).join('');
   tbl.appendChild(head);
   for (let lvl=1; lvl<= MAX_LEVEL; lvl++){
